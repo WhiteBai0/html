@@ -129,6 +129,99 @@ target="_blank"在新窗口打开
 &emsp始终都是占用一个中文字符的宽度
 - 版权符号
 &copy  ©
--商标符号
+- 商标符号
 &trade  ™
 &reg  ®
+## html中加入css文件内容
+#### (优先级满足就近原则：外部样式表<内部样式表<行内样式表)
+1. 内部样式表
+```html
+以h1标签为例
+<style>
+    h1{
+        color:red
+    }
+</style>
+```
+2. 外部样式表
+```html
+当你写好一个css文件后可以通过link标签将css文件导入到html文件当中，同时导入的代码一般放在head标签当中
+<link rel="stylesheet" type="text/css" href="css文件的路径">
+或者
+<style>@import url(文件路径)</style>
+```
+3. 行内样式表
+将style作为一个属性，可以加到每一个标签当中
+```html
+<div style="color red">123456</div>
+```
+## 选择器
+- 类选择器
+  - 语法
+  .类名{属性：属性值}
+  - 说明
+  A)当我们使用class选择符时，应先为每个元素定义一个class名称
+  B)class选择符的语法格式如下
+  ```html
+  <style>
+      .top{width:200px;height:100px;background:green}
+  </style>
+  <div class="top"></div>
+  ```
+  注意事项：当一个class中标识了多个类时，按照style中的顺序，后面的将会覆盖前面的
+- id选择器
+  - 语法
+   #id(属性：属性值)
+  - 说明
+  A)当我们使用id选择符时，应该为每一个元素定义一个id属性
+  如：
+  ```html
+  <div id="box"></div>
+  ```
+  B)id选择符的语法格式是"#"加上自定义的id名称
+  如：#box{width:300px;height:300px}
+  C)起名时要取英文名，不能用关键字：(所有的标记和属性都是关键字)
+  如:head标记
+  D)一个id名称只能对应文档中一个具体的元素对象。(唯一性)
+- 通配符选择器
+  - 语法
+  *{属性:属性值}
+  - 说明：含义是所有元素
+```html
+*{margin:0;padding:0}
+<!-- 代表所有所有元素清除默认边距值和填充值 -->
+```
+- 群组选择器
+  - 说明
+  提供公共代码，节省代码量，和类选择器不同的是，它可以将一整个类进行修改
+  - 示例如下
+```html
+<style>
+    div,.box,h1{
+        background-color:yellow
+    }
+</style>
+```
+- 后代选择器
+  - 说明
+  找到指定标签进行修改
+  - 示例如下
+```html
+<style>
+  div p{background-color:red}
+</style>
+<!-- 对所有div标签下的p标签进行修改 -->
+```
+- 伪类选择器
+ - 语法
+a:link{属性：属性值}超链接的初始状态
+a:visited{属性：属性值}超链接被访问后的状态
+a:hover{属性:属性值}鼠标悬停，即鼠标划过超链接时的状态
+a:active{属性：属性值}超链接被激活时的状态，即鼠标按下超链接的状态
+**注意：**：务必要按照顺序写入link->visit->hover->active
+ - 示例
+```html
+<style>
+    a:link{color:red}
+</style>
+```
